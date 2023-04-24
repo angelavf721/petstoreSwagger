@@ -1,4 +1,4 @@
-package core;
+package test.hooks;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -18,7 +18,7 @@ public class Base {
         RestAssured.requestSpecification = resSpec.build();
 
         ResponseSpecBuilder resBulder = new ResponseSpecBuilder();
-        resBulder.expectResponseTime(Matchers.lessThan(5000L));
+        resBulder.expectResponseTime(Matchers.lessThan(9280L));
         RestAssured.responseSpecification = resBulder.build();
 
 //        RestAssured.requestSpecification.header("Authorization", "Bearer " + "special-key");

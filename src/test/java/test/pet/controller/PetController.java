@@ -1,22 +1,23 @@
 package test.pet.controller;
 
+import test.hooks.Base;
 import org.junit.Test;
 import test.pet.model.PetModel;
 
 import java.io.File;
 
-import static core.Utlis.getID;
-import static core.Utlis.multipartReqSpec;
+import static test.Utlis.Utlis.getIDPet;
+import static test.Utlis.Utlis.multipartReqSpec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-public class PetController {
+public class PetController extends Base {
 
     private static Object idPet;
 
     @Test
     public void uploadImage() {
-        Object id = getID();
+        Object id = getIDPet();
         File file = new File("src/test/image/download.jpg");
         given(multipartReqSpec())
                 .pathParam("id", id)
@@ -74,10 +75,10 @@ public class PetController {
     @Test
     public void InvalidIDsupplied() {
         PetModel pet = getPet();
-        pet.setId_pet("9");
+        pet.setId_pet(555521444);
         given()
-                .body(pet)
                 .when()
+                .body(pet)
                 .put("/pet")
                 .then()
                 .statusCode(400);
@@ -87,12 +88,10 @@ public class PetController {
     @Test
     public void petNotFound() {
         PetModel pet = getPet();
-        pet.setName("55552144458");
-        pet.setStatus("55552144458");
         given()
                 .body(pet)
                 .when()
-                .put("/pet")
+                .put("/pet/55552144458")
                 .then()
                 .statusCode(404);
     }
@@ -106,10 +105,19 @@ public class PetController {
                 .then()
                 .statusCode(200);
     }
+    @Test
+    public void findsByStatusInvalid() {
+        given()
+                .queryParam("status", "abacaxi")
+                .when()
+                .get("/pet/findByStatus")
+                .then()
+                .statusCode(400);
+    }
 
     @Test
     public void findsById() {
-        Object id = getID();
+        Object id = getIDPet();
         given()
                 .pathParam("id", id)
                 .when()
@@ -122,10 +130,8 @@ public class PetController {
     @Test
     public void updatePetID() {
         PetModel pet = getPet();
-        pet.setName("");
-        pet.setId_pet("");
-        pet.setStatus("");
-        Object id = getID();
+        pet.setName("fofi");
+        Object id = getIDPet();
         given()
                 .pathParam("id", id)
                 .body(pet)
@@ -157,7 +163,7 @@ public class PetController {
 
     private PetModel getPet() {
         PetModel pet = new PetModel();
-        pet.setId_pet(getID());
+        pet.setId_pet(getIDPet());
         pet.setName("fofito");
         pet.setStatus("available");
         return pet;

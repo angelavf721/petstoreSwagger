@@ -1,4 +1,4 @@
-package core;
+package test.Utlis;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -13,9 +13,10 @@ import static io.restassured.http.ContentType.MULTIPART;
 
 public class Utlis {
 
-    public static Object getID(){
+    public static Object getIDPet(){
         return RestAssured.get( "/pet/findByStatus?status=pending").then().extract().path("id[0]");
     }
+
     public static RequestSpecification multipartReqSpec() {
         return new RequestSpecBuilder()
                 .setContentType(MULTIPART)

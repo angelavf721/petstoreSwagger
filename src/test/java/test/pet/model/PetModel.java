@@ -1,6 +1,6 @@
 package test.pet.model;
 
-import core.Base;
+import test.hooks.Base;
 
 public class PetModel extends Base {
     private Object id_pet;

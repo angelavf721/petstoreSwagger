@@ -1,13 +1,13 @@
-package test.pet.runner;
+package test.store.runner;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import test.pet.controller.PetController;
-import test.pet.model.PetModel;
+import test.store.controller.StoreController;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        PetController.class
+    StoreController.class
 })
-public class PetRunner {
+public class StoreRunner {
 }

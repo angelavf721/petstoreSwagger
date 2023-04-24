@@ -1,19 +1,19 @@
 package test.store.model;
 
-import java.util.Date;
-
 public class StoreModel {
-    private Integer idStore;
+    private Object idStore;
     private Object petId;
     private Integer quantity;
     private String shipDate;
-    private Boolean status;
+    private String status;
+    private Boolean complete;
 
-    public Integer getIdStore() {
+
+    public Object getIdStore(Object id) {
         return idStore;
     }
 
-    public void setIdStore(Integer idStore) {
+    public void setIdStore(Object idStore) {
         this.idStore = idStore;
     }
 
@@ -42,11 +42,19 @@ public class StoreModel {
         this.shipDate = shipDate;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Boolean getComplete() {
+        return complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
     }
 }
